@@ -187,9 +187,12 @@ impl<F: RichField + Extendable<D>, const D: usize> CircuitBuilderNonNative<F, D>
         a: &NonNativeTarget<FF>,
         b: &NonNativeTarget<FF>,
     ) -> NonNativeTarget<FF> {
+        let ttrue = self._true();
+        let ffalse = self._false();
         self.connect_nonnative(a, b);
         let sum = self.add_virtual_nonnative_target::<FF>();
         let overflow = self.add_virtual_bool_target_unsafe();
+        self.connect(overflow.target, ttrue.target);
 
         self.add_simple_generator(NonNativeAdditionGenerator::<F, D, FF> {
             a: a.clone(),
