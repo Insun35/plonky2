@@ -187,7 +187,7 @@ impl<F: RichField + Extendable<D>, const D: usize> CircuitBuilderNonNative<F, D>
         a: &NonNativeTarget<FF>,
         b: &NonNativeTarget<FF>,
     ) -> NonNativeTarget<FF> {
-        println!("HELLOOOOOO");
+        print!("HELLOOOOOO");
         let sum = self.add_virtual_nonnative_target::<FF>();
         let overflow = self.add_virtual_bool_target_unsafe();
 
